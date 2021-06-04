@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/ObjectFusion.dir/src/main.cpp.o CMakeFiles/ObjectFusion.dir/src/JSONFileLogger.cpp.o CMakeFiles/ObjectFusion.dir/src/KalmanTracker.cpp.o CMakeFiles/ObjectFusion.dir/src/HungarianAlgorithm.cpp.o -o ObjectFusion 

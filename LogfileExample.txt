@@ -1,0 +1,29 @@
+NumberOfSensorObjects: 3
+[SensorObject]  id: 0 x: 12.0 y: 0.5 vx: 3.0 vy: 0.0
+[SensorObject]  id: 1 x: 13.0 y: -0.5 vx: 3.0 vy: 0.0
+[SensorObject]  id: 2 x: 14.0 y: 1.5 vx: 4.0 vy: 0.0
+NumOfPredictedObjects: 0
+AssociationIndex: -1
+SensorObjectIndex: 0
+AssociationIndex: -1
+SensorObjectIndex: 1
+AssociationIndex: -1
+SensorObjectIndex: 2
+NumOfObjectsAfterAssociation: 2
+[ObjectAfterUpdate]  id: 0 x: 12.0 y: 0.5 vx: 3.0 vy: 0.0 Px: 0.09 Py: 0.09 Pvx: 0.01 Pvy: 0.01
+[ObjectAfterUpdate]  id: 1 x: 13.0 y: -0.5 vx: 3.0 vy: 0.0 Px: 0.09 Py: 0.09 Pvx: 0.01 Pvy: 0.01
+[ObjectAfterUpdate]  id: 2 x: 14.0 y: 1.5 vx: 4.0 vy: 0.0 Px: 0.09 Py: 0.09 Pvx: 0.01 Pvy: 0.01
+NumberOfSensorObjects: 3
+[SensorObject]  id: 0 x: 13.0 y: 0.5 vx: 3.0 vy: 0.0
+[SensorObject]  id: 1 x: 14.0 y: -0.5 vx: 3.0 vy: 0.0
+[SensorObject]  id: 2 x: 15.0 y: 1.5 vx: 4.0 vy: 0.0
+NumOfPredictedObjects: 3
+[PredictedObject] id: 0 x: y: vx: vy: Px: Py: Pvx: Pvy:
+[PredictedObject] id: 1 x: y: vx: vy: Px: Py: Pvx: Pvy:
+[PredictedObject] id: 2 x: y: vx: vy: Px: Py: Pvx: Pvy:
+AssociationIndex: 0
+SensorObjectIndex: 0
+AssociationIndex: 1
+SensorObjectIndex: 1
+AssociationIndex: 2
+SensorObjectIndex: 2

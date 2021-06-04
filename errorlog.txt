@@ -1,0 +1,12 @@
+track id: 0 distance :1.99085
+track id: 1 distance :2.03567
+track id: 0 distance :1.93187
+track id: 1 distance :2.17754
+
+
+
+
+track id: 0 distance :1.98693
+track id: 1 distance :2.09397
+track id: 0 distance :1.81142
+track id: 1 distance :2.19446

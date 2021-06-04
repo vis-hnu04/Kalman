@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/SensorServer.dir/src/SensorServer.cpp.o -o SensorServer 
