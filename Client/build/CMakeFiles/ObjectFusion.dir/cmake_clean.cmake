@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ObjectFusion.dir/src/KalmanTracker.cpp.o.d"
   "CMakeFiles/ObjectFusion.dir/src/main.cpp.o"
   "CMakeFiles/ObjectFusion.dir/src/main.cpp.o.d"
+  "CMakeFiles/ObjectFusion.dir/src/matrix.cpp.o"
+  "CMakeFiles/ObjectFusion.dir/src/matrix.cpp.o.d"
   "ObjectFusion"
   "ObjectFusion.pdb"
 )

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/vishnu/cariad/Client/inc -I/home/vishnu/cariad/Client/../inc
+CXX_INCLUDES = -I/home/vishnu/cariadupdate/cariad/Client/inc -I/home/vishnu/cariadupdate/cariad/Client/../inc
 
 CXX_FLAGS = -g -std=gnu++11
 

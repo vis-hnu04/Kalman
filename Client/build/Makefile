@@ -57,10 +57,10 @@ RM = /opt/cmake-3.20.2-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vishnu/cariad/Client
+CMAKE_SOURCE_DIR = /home/vishnu/cariadupdate/cariad/Client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vishnu/cariad/Client/build
+CMAKE_BINARY_DIR = /home/vishnu/cariadupdate/cariad/Client/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vishnu/cariad/Client/build/CMakeFiles /home/vishnu/cariad/Client/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vishnu/cariadupdate/cariad/Client/build/CMakeFiles /home/vishnu/cariadupdate/cariad/Client/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vishnu/cariad/Client/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vishnu/cariadupdate/cariad/Client/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -225,6 +225,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ObjectFusion.dir/build.make CMakeFiles/ObjectFusion.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/matrix.o: src/matrix.cpp.o
+.PHONY : src/matrix.o
+
+# target to build an object file
+src/matrix.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ObjectFusion.dir/build.make CMakeFiles/ObjectFusion.dir/src/matrix.cpp.o
+.PHONY : src/matrix.cpp.o
+
+src/matrix.i: src/matrix.cpp.i
+.PHONY : src/matrix.i
+
+# target to preprocess a source file
+src/matrix.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ObjectFusion.dir/build.make CMakeFiles/ObjectFusion.dir/src/matrix.cpp.i
+.PHONY : src/matrix.cpp.i
+
+src/matrix.s: src/matrix.cpp.s
+.PHONY : src/matrix.s
+
+# target to generate assembly for a file
+src/matrix.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ObjectFusion.dir/build.make CMakeFiles/ObjectFusion.dir/src/matrix.cpp.s
+.PHONY : src/matrix.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -246,6 +270,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/matrix.o"
+	@echo "... src/matrix.i"
+	@echo "... src/matrix.s"
 .PHONY : help
 
 

@@ -4,6 +4,7 @@ HungarianAlgorithm::HungarianAlgorithm(std::vector<std::vector<float>> &matrix){
     _costMatrix = matrix;
     _rows    = _costMatrix.size();
     _cols    = _costMatrix[0].size();
+    _found    = false;
 
 }
 
@@ -46,8 +47,12 @@ void HungarianAlgorithm::second_step(std::vector<std::vector<int>> &mask , std::
                                   rowcover[i] +=1;
                                   colcover[j] +=1;
                               }
-        
-                                      }
+                         if(std::count(colcover.begin(), colcover.end(), 1) >= _cols)
+                         {
+                              _found = true;
+                                   
+                         }   
+               }
 
 
 inline void HungarianAlgorithm::clear_vectors(std::vector<int> &vec){
@@ -63,13 +68,15 @@ inline void HungarianAlgorithm::clear_vectors(std::vector<int> &vec){
                if(mask[r][c]){
                   std::pair<int,int> ObjectTrack(r,c);
                    _result.push_back(ObjectTrack);
+               
                }
+
            }
        }
          
 }
 
-std::vector<std::pair<int,int>> HungarianAlgorithm::init(){
+std::vector<std::pair<int,int>> HungarianAlgorithm::solve(){
     first_step(_costMatrix);
     
     std::vector<std::vector<int>> mask (_costMatrix.size(),std::vector<int>(_costMatrix.size(),0));
@@ -80,8 +87,11 @@ std::vector<std::pair<int,int>> HungarianAlgorithm::init(){
   
     clear_vectors(rowcover);
     clear_vectors(colcover);
-
-    optimal_assignment(mask);
+    if (_found){
+       
+        optimal_assignment(mask);
+    }
+   
     return _result;
 
 }
