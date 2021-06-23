@@ -1,4 +1,4 @@
-﻿#include "ISensorInterface.h"
+﻿#include "ISensorImplementation.h"
 #include <iostream>
 #include"KalmanTracker.h"
 #include"IFusionInterface.h"
@@ -7,51 +7,42 @@
 
 int main()
  {
-  // This is the entry point for your solution.
-  // Connect to the sensor and track all objects.
-  // Have fun!!!
-
-    
-
-
-  InterfaceImplementation Is ;
-  int i =100;
+  ISensorInterface *sensorInterface;
+  IFusionInterface *fusionInterface;
+  
+  InterfaceImplementation interface;
+  KalmanTracker  kalmanFilter;
+  
+ 
+  fusionInterface  = &kalmanFilter;
+  sensorInterface = &interface;
+  
+  
   SensorObjectList objectList;
-  KalmanTracker  kf;
-  if(Is.connectToSensor()){
+    if(sensorInterface->connectToSensor()){
     std::cout<<"connection established with sensor /n"<<std::endl;
     
   } 
   
-  while(i>0){
-  if(Is.getNextObjectList(objectList)){
-    std::cout<<"recived object"<<std::endl;
-  }   
- 
- 
+  
+   while(sensorInterface->getNextObjectList(objectList)){
     //std::cout<<objectList.numOfValidObjects <<std::endl;
       
-      std::cout<<i <<std::endl;
-      SensorObject so1 = objectList.objectList[0];
+       SensorObject so1 = objectList.objectList[0];
        SensorObject so2 = objectList.objectList[1];
-
-
-
-
   
      //std::cout << so1.x << " " << so1.y << " " << so1.vx << " " << so1.vy << std::endl;
      //std::cout << so2.x << " " << so2.y << " " << so2.vx << " " << so2.vy << std::endl;  
 
-    
+     fusionInterface->doUpdate(objectList);
 
-     kf.doUpdate(objectList);
-
-    if( Is.confirmObjectsReceived()){
+    if( sensorInterface->confirmObjectsReceived()){
      std::cout<<"acknowledgment sent"<<std::endl;
 
     }
-   i--;
+  
   }
+  sensorInterface->closeConnection();
 
   return 0 ;
 }

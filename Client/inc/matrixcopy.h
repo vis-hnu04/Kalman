@@ -10,6 +10,7 @@
 
 using std::vector;
 
+template<typename matrixType>
 class Matrix {
 
     public:
@@ -18,12 +19,12 @@ class Matrix {
     /**
      * Initialization of matrix with the given rows and columns with the given value. 
     */
-    Matrix(unsigned, unsigned, double);
+    Matrix(unsigned, unsigned, matrixType);
 
    /**
     * Initialization of matrix from a 2d vector.
    */
-    Matrix(std::vector<std::vector<float> >& a);
+    Matrix(std::vector<std::vector<matrixType> >& a);
     
 
     // returns number of rows #
@@ -56,7 +57,7 @@ class Matrix {
     Matrix& createIdentityMatrix();
 
     /** Makes this matrix a diagonal matrix. */
-    Matrix& createDiagonalMatrix(double );
+    Matrix& createDiagonalMatrix(const matrixType );
    
    /**Returns the matrix object which is the inverse of the given matrix.*/
     Matrix inverse();
@@ -85,8 +86,16 @@ class Matrix {
     private:
     unsigned _m_rowSize;
     unsigned _m_colSize;
-    vector<vector<double> > _m_matrix;
+    vector<vector<matrixType> > _m_matrix;
 
 };
 
+template<typename matrixType>
+double calculateDeterminant(std::vector<std::vector<matrixType>> mat);
+
+
+
+
+#include"matrixcopy.hpp"
 #endif
+

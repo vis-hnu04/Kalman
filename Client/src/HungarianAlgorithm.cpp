@@ -50,6 +50,7 @@ void HungarianAlgorithm::second_step(std::vector<std::vector<int>> &mask , std::
                          if(std::count(colcover.begin(), colcover.end(), 1) >= _cols)
                          {
                               _found = true;
+                              return;
                                    
                          }   
                }

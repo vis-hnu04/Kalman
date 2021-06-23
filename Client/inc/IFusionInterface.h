@@ -1,9 +1,6 @@
 #ifndef IFUSIONINTERFACE_H_
 #define IFUSIONINTERFACE_H_ IFUSIONINTERFACE_H_
-#include<eigen3/Eigen/Dense>
 #include "JSONFileLogger.h"
-using Eigen::MatrixXd;
-using Eigen::VectorXd;
 
 
 class IFusionInterface {
