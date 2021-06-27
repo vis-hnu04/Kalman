@@ -5,12 +5,12 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                echo finished build 
+                echo 'finished build' 
             }
         }
         stage('Test') { 
             steps {
-                echo no test to perform
+                echo 'no test to perform'
             }
         }
         stage('Deploy') { 
