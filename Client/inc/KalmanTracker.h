@@ -38,7 +38,7 @@ class KalmanTracker : public IFusionInterface
       
 
 
-
+  void findMinimum(std::vector<std::vector<float>> &associationMatrix);
   void doUpdate(const SensorObjectList &sensorObjectList) ;
 
   void logwriter(const SensorObjectList &sensorObjectList) ;

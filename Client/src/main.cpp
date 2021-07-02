@@ -31,7 +31,7 @@ int main()
  
     //std::cout<<objectList.numOfValidObjects <<std::endl;
       
-     //std::cout<<objectList.timestamp <<std::endl;
+      std::cout<<i <<std::endl;
       SensorObject so1 = objectList.objectList[0];
        SensorObject so2 = objectList.objectList[1];
 

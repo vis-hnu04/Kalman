@@ -10,7 +10,7 @@ class HungarianAlgorithm
 
 public:
  HungarianAlgorithm(std::vector<std::vector<float>> & matrix );
- std::vector<std::pair<int,int>> init();
+ std::vector<std::pair<int,int>> solve();
 
  void first_step(std::vector<std::vector<float>> &matrix);
  void second_step(std::vector<std::vector<int>> &mask , std::vector<std::vector<float>> &matrix,
@@ -25,6 +25,7 @@ public:
  std::size_t _rows ;
  std::size_t _cols;
  std::vector<std::pair<int,int> > _result;
+ bool _found;
  
 
 };

@@ -10,6 +10,11 @@
 #define OBJECTS_RECEIVED_MSG  "ObjectsReceived"
 #define OBJECTS_RECEIVED_MSG_SIZE 15
 
+static  char  FILENAME[] = "JSONLogOut";
+static  char   TIMESTAMP[] ="Timestamp";
+static  char  PREDICTION[] = "Predicted Object List";
+static  char  UPDATED[] = "Updated Object List";
+
 // Measurement noise is constant and provided by sensor supplier
 
 static constexpr float Rx = 0.3f;

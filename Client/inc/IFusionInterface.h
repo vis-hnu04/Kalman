@@ -8,7 +8,7 @@ using Eigen::VectorXd;
 
 class IFusionInterface {
 public:
-  IFusionInterface() : _currentObjectId(0), _logger("JSONLogGNNOut5.json") {}
+  IFusionInterface() : _currentObjectId(0), _logger(FILENAME) {}
 
   // Do the whole magic here, i.e.,
   // prediction, association, update

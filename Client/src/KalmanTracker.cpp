@@ -114,6 +114,35 @@ void KalmanTracker::predict(const uint64_t timestamp)
         }
  }
 
+
+ void KalmanTracker::findMinimum(std::vector<std::vector<float>> &costMatrix){
+   double infinity = std::numeric_limits<double>:: max();
+   float minimum = infinity; 
+   int column;
+   int row;
+   size_t num_observations = costMatrix.size();
+   while(num_observations){
+      for (int index =0; index <  costMatrix.size();index++){    
+          auto itr = std::min_element(costMatrix[index].begin(), costMatrix[index].end());
+          if(*itr < minimum){
+            
+            minimum = *itr;
+            column =  itr - costMatrix[index].begin();
+            row = index;
+        }
+   }
+      for (int i {0};i< costMatrix.size();i++){
+         costMatrix[i][column]=infinity;
+         costMatrix[row][i] = infinity;
+     }
+      associationArray.push_back({row,column});
+      minimum = infinity;
+      num_observations--;
+   }
+ }
+
+
+
  void KalmanTracker::createNewObject(const SensorObject &sensorObject) {
      
       _objectList.objects[_currentObjectId].x =  sensorObject.x;
@@ -194,25 +223,37 @@ bool KalmanTracker::associate(const SensorObject &sensorObject,
                    std::cout<< "state vector after correction "<< x_(0) <<" ,"<<x_(1)<<" , "<<x_(2) <<" ,"<<x_(3) <<std::endl;
                   // std::cout<< "P matrix after correction "<<P_<<std::endl;
            
-     }       
+     } 
+
+
+
 
 void KalmanTracker::logwriter(const SensorObjectList &sensorObjectList) 
 {
 
           _logger.openNewFusionCycleArray();
-          _logger.addElement(sensorObjectList.timestamp,"Timestamp");
+          _logger.addElement(sensorObjectList.timestamp,TIMESTAMP);
           _logger.addSensorObjectList(sensorObjectList);
-          _logger.addObjectList(_objectList,"PredictedObjectList");
+          _logger.addObjectList(_objectList,PREDICTION);
           _logger.addAssociationIndices(associationArray);
-          _logger.addObjectList(_objectList,"UpdatedObjectList");
+          _logger.addObjectList(_objectList,UPDATED);
           _logger.closeFusionCycleArray();
+           associationArray.clear();
   
 
 }                           
                      
 void KalmanTracker::doUpdate(const SensorObjectList &sensorObjectList) 
- {     
+ {    
+       uint8_t associationIndexArray[_objectList.numOfValidObjects];
+   
+      std::vector<std::vector<float>> assignmentMatrix;
+
+      uint8_t index;
+
+
        if (!is_initialized_) {
+         
           _objectList.numOfValidObjects = sensorObjectList.numOfValidObjects;
           _objectList.timestamp     =  sensorObjectList.timestamp;
           
@@ -221,6 +262,7 @@ void KalmanTracker::doUpdate(const SensorObjectList &sensorObjectList)
             createNewObject(sensorObjectList.objectList[i]);
             std::pair<int,int> ObjectTrackPair(i,-1);
             associationArray.push_back(ObjectTrackPair);
+ 
            }   
           is_initialized_ = true;
           logwriter(sensorObjectList);
@@ -228,46 +270,44 @@ void KalmanTracker::doUpdate(const SensorObjectList &sensorObjectList)
           return;
          }
   
-   predict(sensorObjectList.timestamp);
-                  
-   uint8_t associationIndexArray[_objectList.numOfValidObjects];
-   
-   std::vector<std::vector<float>> assignmentMatrix;
+     predict(sensorObjectList.timestamp);
 
-  uint8_t index;
-  for(int i = 0; i< sensorObjectList.numOfValidObjects;i++ )
-  { 
+     for(int i = 0; i< sensorObjectList.numOfValidObjects;i++ )
+    { 
     
-    if(associate(sensorObjectList.objectList[i],index))
-    {
-         assignmentMatrix.push_back(_costMatrix);
-         _costMatrix.clear();
+         if(associate(sensorObjectList.objectList[i],index))
+       {
+             assignmentMatrix.push_back(_costMatrix);
+            _costMatrix.clear();
+           }
+         else
+          {
+            createNewObject(sensorObjectList.objectList[i]);
+            associationArray.push_back({i,-1});
+
+             }
     }
-    else
-        {
-         createNewObject(sensorObjectList.objectList[i]);
+  
+     findMinimum(assignmentMatrix);
+    // HungarianAlgorithm ha(assignmentMatrix);       
+
+ //   associationArray = ha.init();                              //changed
+  
+
+      for (auto values: associationArray){
+        associationIndexArray[values.first] = values.second;
+        std::cout<<values.first<< " observation mapped to " <<values.second<<std::endl; 
+
+      }
+
+   
+      for(int i = 0;i < sensorObjectList.numOfValidObjects;i++){
+
+            update(sensorObjectList.objectList[i],associationIndexArray[i]);
 
        }
-    }
-
-  HungarianAlgorithm ha(assignmentMatrix);       
-
-  associationArray = ha.init();                              //changed
-  
-  int size = associationArray.size();
-  for (auto values: associationArray){
-    associationIndexArray[values.first] = values.second;
-    std::cout<<values.first<< " observation mapped to " <<values.second<<std::endl; 
-
-  }
-   
-  for(int i = 0;i < sensorObjectList.numOfValidObjects;i++){
-
-      update(sensorObjectList.objectList[i],associationIndexArray[i]);
-
-    }
-         logwriter(sensorObjectList);  
-          _objectList.timestamp = sensorObjectList.timestamp;
+       logwriter(sensorObjectList);  
+      _objectList.timestamp = sensorObjectList.timestamp;
 
 }
 
