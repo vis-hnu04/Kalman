@@ -115,9 +115,3 @@ Some explanations:
 - Set ObjectIndex=-1 if no track/sensor object associations exist
 - "PredictedObjectList" is optional if no tracks exist at the first cycle.
 
-# Final remarks
-There is no time limit for the test!<br>
-Take as much time as you need to complete the task!<br>
-Please attach your processed logfile to your solution!<br>
-Comment your code (header+cpp-files)!<br>
-Try to avoid external dependencies if possible
