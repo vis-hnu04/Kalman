@@ -1,7 +1,6 @@
 # Introduction
-Your departement develops a new sensor data fusion approach.
-To this end, a test vehicle is available including a single sensor providing objects every 400 ms.
-Your job is to implement an interface in order to connect to the vehicles sensors.
+A test vehicle is available including a single sensor providing objects every 400 ms.
+Implement an interface in order to connect to the vehicles sensors.
 Then every incoming object list is supposed to be read.
 Subsequently, every objects of the list shall be tracked.
 To this end, a fusion interface must be implemented.
